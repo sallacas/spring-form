@@ -76,6 +76,15 @@ public class FormController {
             add("ROLE_MODERATOR");
         }};
     }
+
+    @ModelAttribute("rolesMap")
+    public Map<String, String> rolesMap() {
+        return new HashMap<>() {{
+            put("ROLE_ADMIN", "Administrator");
+            put("ROLE_USER", "User");
+            put("ROLE_MODERATOR", "Moderator");
+        }};
+    }
     @PostMapping("/form")
     public String process(@Valid User user, BindingResult result, Model model, SessionStatus status) {
         model.addAttribute("title", "Result of form");
