@@ -72,6 +72,9 @@ public class FormController {
         user.setLastname("Sito");
         user.setId("1110111-K");
         user.setState(true);
+        user.setValue("secret");
+        user.setCountry(new Country(2, "CO", "Colombia"));
+        user.setRoles(List.of(new Role(3, "ROLE_USER", "User")));
         model.addAttribute("title", "User Form");
         model.addAttribute("user", user);
         return "form";

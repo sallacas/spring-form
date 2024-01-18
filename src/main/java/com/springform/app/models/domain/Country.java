@@ -2,7 +2,6 @@ package com.springform.app.models.domain;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,4 +16,8 @@ public class Country {
     private String code;
     private String name;
 
+    @Override
+    public String toString() {
+        return this.id.toString();
+    }
 }

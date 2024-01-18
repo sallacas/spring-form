@@ -43,4 +43,5 @@ public class User {
     private Boolean state;
     @NotEmpty
     private String genre;
+    private String value;
 }
