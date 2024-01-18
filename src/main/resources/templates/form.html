@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <h3 th:text="${title}"></h3>
+    <form th:action="@{/form}" method="post" th:object="${user}">
+        <div>
+            <label for="id">ID</label>
+            <div>
+                <input id="id" type="text" th:field="*{id}">
+            </div>
+            <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+        </div>
+        <div>
+            <label>Roles</label>
+            <div th:each="role: ${rolesListString}">
+                <input type="checkbox" th:field="*{roles}" th:value="${role}">
+                <label th:text="${role}" th:for="${#ids.prev('roles')}"></label>
+            </div>
+            <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+        </div>
+        <div>
+            <label for="country">Country</label>
+            <div>
+                <select id="country" th:field="*{country}">
+                    <option value="">-- Choose your country</option>
+                    <option th:each="country: ${countryList}" th:text="${country.name}" th:value="${country.id}"></option>
+                </select>
+            </div>
+            <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
+        </div>
+        <div>
+            <label for="firstname">First Name</label>
+            <div>
+                <input id="firstname" type="text" th:field="*{firstname}">
+            </div>
+            <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
+        </div>
+        <div>
+            <label for="lastname">Last Name</label>
+            <div>
+                <input id="lastname" type="text" th:field="*{lastname}">
+            </div>
+            <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+        </div>
+        <div>
+            <label for="username">Username</label>
+            <div>
+                <input id="username" type="text" th:field="*{username}" autocomplete="off">
+            </div>
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <div>
+                <input id="password" type="password" th:field="*{password}" autocomplete="off">
+            </div>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <div>
+                <input id="email" type="email" th:field="*{email}">
+            </div>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <div>
+            <label for="account">Account</label>
+            <div>
+                <input id="account" type="number" th:field="*{account}">
+            </div>
+            <div th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></div>
+        </div>
+        <div>
+            <label for="birthday">Birthday</label>
+            <div>
+                <input id="birthday" type="date" th:field="*{birthday}" placeholder="dd/MM/yyyy">
+            </div>
+            <div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
+        </div>
+        <div>
+            <div>
+                <button type="submit">Send</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

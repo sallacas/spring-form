@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <h3 th:text="${title}"></h3>
+    <ul>
+        <li th:text="${user.id}"></li>
+        <li th:text="${user.country.getId()}"></li>
+        <li th:text="${user.country.getCode()}"></li>
+        <li th:text="${user.country.getName()}"></li>
+        <li th:text="${user.firstname}"></li>
+        <li th:text="${user.lastname}"></li>
+        <li th:text="${user.username}"></li>
+        <li th:text="${user.password}"></li>
+        <li th:text="${user.email}"></li>
+        <li th:text="${user.account}"></li>
+        <li th:text="${#dates.format(user.birthday,'dd/MM/yyyy')}"></li>
+    </ul>
+
+    <div>
+        <ul>
+            <li th:each="role: ${user.roles}" th:text="${role}"></li>
+        </ul>
+    </div>
+</body>
+</html>
