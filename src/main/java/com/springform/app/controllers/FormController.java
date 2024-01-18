@@ -107,17 +107,20 @@ public class FormController {
         return Arrays.asList("Men", "Women", "Other");
     }
     @PostMapping("/form")
-    public String process(@Valid User user, BindingResult result, Model model, SessionStatus status) {
-        model.addAttribute("title", "Result of form");
+    public String process(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            /* Map<String, String> errors = new HashMap<>();
-            result.getFieldErrors().forEach(err -> errors.put(err.getField(), "El campo ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()))
-            );
-            model.addAttribute("error", errors);*/
+            model.addAttribute("title", "Result of form");
             return "form";
         }
-        model.addAttribute("user", user);
+        return "redirect:/see";
+    }
+
+    @GetMapping("/see")
+    public String see(@SessionAttribute(name = "user", required = false) User user, Model model, SessionStatus status) {
+        if (Objects.isNull(user)) return "redirect:/form";
+        model.addAttribute("title", "Result of form");
         status.setComplete();
         return "result";
     }
 }
+
