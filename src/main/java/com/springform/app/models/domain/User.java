@@ -40,4 +40,7 @@ public class User {
     private Country country;
     @NotEmpty
     private List<Role> roles;
+    private Boolean state;
+    @NotEmpty
+    private String genre;
 }

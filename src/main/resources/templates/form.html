@@ -8,6 +8,12 @@
     <h3 th:text="${title}"></h3>
     <form th:action="@{/form}" method="post" th:object="${user}">
         <div>
+            <label for="state">State</label>
+            <div>
+                <input id="state" type="checkbox" th:field="*{state}">
+            </div>
+        </div>
+        <div>
             <label for="id">ID</label>
             <div>
                 <input id="id" type="text" th:field="*{id}">
@@ -47,6 +53,16 @@
                 <input id="lastname" type="text" th:field="*{lastname}">
             </div>
             <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
+        </div>
+        <div>
+            <label>Genre</label>
+            <div th:each="genres: ${genreListString}">
+                <label>
+                    <input type="radio" th:field="*{genre}" th:value="${genres}">
+                    <label th:text="${genres}" th:for="${#ids.prev('genre')}"></label>
+                </label>
+            </div>
+            <div th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></div>
         </div>
         <div>
             <label for="username">Username</label>

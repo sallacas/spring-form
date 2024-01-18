@@ -7,12 +7,16 @@
 <body>
     <h3 th:text="${title}"></h3>
     <ul>
+        <li th:text="'User is active: '+ ${user.state}"></li>
         <li th:text="${user.id}"></li>
         <li th:text="${user.country.getId()}"></li>
         <li th:text="${user.country.getCode()}"></li>
         <li th:text="${user.country.getName()}"></li>
         <li th:text="${user.firstname}"></li>
         <li th:text="${user.lastname}"></li>
+
+        <li th:text="'Genre: ' + ${user.genre}"></li>
+
         <li th:text="${user.username}"></li>
         <li th:text="${user.password}"></li>
         <li th:text="${user.email}"></li>

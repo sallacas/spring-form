@@ -71,7 +71,7 @@ public class FormController {
         user.setFirstname("John");
         user.setLastname("Sito");
         user.setId("1110111-K");
-
+        user.setState(true);
         model.addAttribute("title", "User Form");
         model.addAttribute("user", user);
         return "form";
@@ -97,6 +97,11 @@ public class FormController {
     @ModelAttribute("roleList")
     public List<Role> roleList() {
         return roleService.list();
+    }
+
+    @ModelAttribute("genreListString")
+    public List<String> genreListSting() {
+        return Arrays.asList("Men", "Women", "Other");
     }
     @PostMapping("/form")
     public String process(@Valid User user, BindingResult result, Model model, SessionStatus status) {
