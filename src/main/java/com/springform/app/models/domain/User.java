@@ -39,5 +39,5 @@ public class User {
     @NotNull
     private Country country;
     @NotEmpty
-    private List<String> roles;
+    private List<Role> roles;
 }

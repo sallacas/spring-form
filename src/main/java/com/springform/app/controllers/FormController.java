@@ -2,9 +2,12 @@ package com.springform.app.controllers;
 
 import com.springform.app.editors.CountryPropertyEditor;
 import com.springform.app.editors.NameMayusEditor;
+import com.springform.app.editors.RolesEditor;
 import com.springform.app.models.domain.Country;
+import com.springform.app.models.domain.Role;
 import com.springform.app.models.domain.User;
 import com.springform.app.services.CountryService;
+import com.springform.app.services.RoleService;
 import com.springform.app.validators.UserValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,10 @@ public class FormController {
     private CountryService countryService;
     @Autowired
     private CountryPropertyEditor countryPropertyEditor;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private RolesEditor rolesEditor;
 
     @InitBinder
     public void init(WebDataBinder binder){
@@ -37,6 +44,7 @@ public class FormController {
         binder.registerCustomEditor(Date.class, "birthday",new CustomDateEditor(format,false));
         binder.registerCustomEditor(String.class, "firstname",new NameMayusEditor());
         binder.registerCustomEditor(Country.class,"country",countryPropertyEditor);
+        binder.registerCustomEditor(Role.class, "roles", rolesEditor);
     }
     @ModelAttribute("countrys")
     public List<String> countrys(){
@@ -84,6 +92,11 @@ public class FormController {
             put("ROLE_USER", "User");
             put("ROLE_MODERATOR", "Moderator");
         }};
+    }
+
+    @ModelAttribute("roleList")
+    public List<Role> roleList() {
+        return roleService.list();
     }
     @PostMapping("/form")
     public String process(@Valid User user, BindingResult result, Model model, SessionStatus status) {
