@@ -10,6 +10,9 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="alert alert-info">
+    <span th:text="'Timelapse ' + ${timelapse}"></span>
+</div>
 <div class="container-sm p-5">
     <h3 class="row" th:text="${title}"></h3>
     <form class="row mt-5" th:action="@{/form}" method="post" th:object="${user}">
