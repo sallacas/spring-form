@@ -19,6 +19,9 @@ public class TimelapseInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            return true;
+        }
         if (handler instanceof HandlerMethod method) {
             logger.info("Method of controller " + method.getMethod().getName());
         }
@@ -28,15 +31,19 @@ public class TimelapseInterceptor implements HandlerInterceptor {
         request.setAttribute("start", start);
         int delay = new Random().nextInt(1000);
         Thread.sleep(delay);
+        //response.sendRedirect(request.getContextPath().concat("/404"));
         return true;
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            return;
+        }
         long end = System.currentTimeMillis();
         long start = (long) request.getAttribute("start");
-
         long timelapse = end - start;
+
         if (handler instanceof HandlerMethod && Objects.nonNull(modelAndView)) {
             modelAndView.addObject("timelapse", timelapse);
         }

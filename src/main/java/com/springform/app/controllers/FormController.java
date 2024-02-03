@@ -70,7 +70,7 @@ public class FormController {
         User user = new User();
         user.setFirstname("John");
         user.setLastname("Sito");
-        user.setId("1110111-K");
+        user.setId("111111-K");
         user.setState(true);
         user.setValue("secret");
         user.setCountry(new Country(2, "CO", "Colombia"));

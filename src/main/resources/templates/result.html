@@ -10,9 +10,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="alert alert-info">
-    <span th:text="'Timelapse ' + ${timelapse}"></span>
-</div>
+<section th:replace="components/timelapse :: interceptor"></section>
 <div class="container">
     <a th:href="@{/form}" class="btn btn-primary mt-5">Volver</a>
     <ul class="list-group my-3">
